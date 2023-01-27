@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import techproed.utilities.ConfigReader;
 import techproed.utilities.Driver;
 
-public class day20_Driver_Config_Test {
+public class Day20_Driver_Config_Test {
 
     @Test
     public void firstTest() {

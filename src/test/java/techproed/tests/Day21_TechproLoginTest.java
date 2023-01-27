@@ -27,6 +27,7 @@ public class Day21_TechproLoginTest {
         assert techproHomePage.homeHeader.isDisplayed();
         techproHomePage.homeLogoutButton.click();
         assert techproLoginPage.submit.isDisplayed();
+        Driver.closeDriver();
 
     }
 
