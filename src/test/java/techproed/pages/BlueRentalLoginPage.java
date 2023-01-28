@@ -22,7 +22,11 @@ public class BlueRentalLoginPage {
     @FindBy(xpath = "//div[@role='alert']")
     public WebElement error_massage_1;
 
+   @FindBy(xpath = "//div[@role='alert']")
+    public WebElement error_massage_2;
 
+   @FindBy(xpath = "//*[@class='invalid-feedback']")
+    public WebElement false_Mail_Massage;
 
 
 

@@ -18,7 +18,20 @@ public BlueRentalHomePage(){
 @FindBy(id = "dropdown-basic-button")
     public WebElement userID;
 
+@FindBy(xpath = "//select[@name='car']")
+    public WebElement dropDown;
 
+@FindBy(name = "pickUpLocation")
+    public WebElement pickUp;
+
+@FindBy(xpath = "//*[text()='Please first login']")
+    public WebElement firstLoginMassage;
+
+    @FindBy(linkText = "Logout")
+    public WebElement logOutLink;
+
+    @FindBy(xpath = "//button[.='OK']")
+    public WebElement OK;
 
 
 

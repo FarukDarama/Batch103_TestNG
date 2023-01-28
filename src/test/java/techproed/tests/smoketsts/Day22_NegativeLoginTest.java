@@ -1,5 +1,7 @@
 package techproed.tests.smoketsts;
 
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
@@ -35,8 +37,64 @@ public class Day22_NegativeLoginTest {
         Thread.sleep(3000);
         Assert.assertEquals(blueRentalLoginPage.error_massage_1.getText(),"User with email fake@bluerentalcars.com not found");
 
+    }
 
+    @Test
+    public void dogruMailYanlisPass() throws InterruptedException {
+
+        Driver.getDriver().get(ConfigReader.getProperty("app_url"));
+        blueRentalHomePage = new BlueRentalHomePage();
+        blueRentalLoginPage = new BlueRentalLoginPage();
+        blueRentalHomePage.loginLink.click();
+        blueRentalLoginPage.emailBox.sendKeys(ConfigReader.getProperty("admin_email"));
+        blueRentalLoginPage.passwordBox.sendKeys(ConfigReader.getProperty("fake_pass"), Keys.ENTER);
+        Thread.sleep(3000);
+        Assert.assertEquals("Bad credentials",blueRentalLoginPage.error_massage_2.getText());
+
+    }
+
+    @Test
+    public void gecersizMailTest() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getProperty("app_url"));
+        blueRentalHomePage = new BlueRentalHomePage();
+        blueRentalLoginPage = new BlueRentalLoginPage();
+        blueRentalHomePage.loginLink.click();
+        blueRentalLoginPage.emailBox.sendKeys(ConfigReader.getProperty("false_mail"));
+        Thread.sleep(2000);
+        Assert.assertEquals(blueRentalLoginPage.false_Mail_Massage.getText(),"email must be a valid email");
+        Thread.sleep(2000);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        blueRentalLoginPage.emailBox.sendKeys(Keys.BACK_SPACE);
+        Thread.sleep(2000);
+        blueRentalLoginPage.emailBox.sendKeys(ConfigReader.getProperty("admin_email"));
+        Assert.assertFalse(blueRentalLoginPage.false_Mail_Massage.isDisplayed());
+
+    }
+
+
+    @Test
+    public void continueReservationTest() {
+        Driver.getDriver().get(ConfigReader.getProperty("app_url"));
+        blueRentalHomePage = new BlueRentalHomePage();
+        blueRentalLoginPage = new BlueRentalLoginPage();
+        Select select = new Select(blueRentalHomePage.dropDown);
+        select.selectByValue("9");
+        blueRentalHomePage.pickUp.sendKeys("Pennsylvania Penn Hills",Keys.TAB,"Almanya",Keys.TAB,"12.12.2023",Keys.TAB,"100",
+                Keys.TAB,"14.12.2023",Keys.TAB,"100",Keys.TAB,Keys.ENTER);
+        Assert.assertEquals(blueRentalHomePage.firstLoginMassage.getText(),"Please first login");
 
 
     }
+
+
+
+
 }
