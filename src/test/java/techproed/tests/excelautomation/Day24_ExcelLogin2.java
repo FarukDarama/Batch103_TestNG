@@ -1,4 +1,5 @@
 package techproed.tests.excelautomation;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
 import techproed.pages.BlueRentalLoginPage;
@@ -23,10 +24,10 @@ public class Day24_ExcelLogin2 {
         excelUtils=new ExcelUtils(path,sayfa);
         excelDatalari=excelUtils.getDataList();
         Driver.getDriver().get(ConfigReader.getProperty("app_url"));
-//        home page logine tikla
+        //        home page logine tikla
         for (Map<String,String> data:excelDatalari) {
-            //        Sayfaya git
-            Driver.getDriver().get(ConfigReader.getProperty("app_url"));
+         //        Sayfaya git
+         //   Driver.getDriver().get(ConfigReader.getProperty("app_url"));
             blueRentalHomePage= new BlueRentalHomePage();
             blueRentalLoginPage = new BlueRentalLoginPage();
             blueRentalHomePage.loginLink.click();
@@ -47,6 +48,7 @@ public class Day24_ExcelLogin2 {
             blueRentalHomePage.logOutLink.click();
             ReusableMethods.waitFor(1);
             blueRentalHomePage.OK.click();
+
         }
         Driver.closeDriver();
     }

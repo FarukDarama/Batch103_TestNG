@@ -1,4 +1,4 @@
-package techproed.tests.smoketsts;
+package techproed.tests.smoketests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

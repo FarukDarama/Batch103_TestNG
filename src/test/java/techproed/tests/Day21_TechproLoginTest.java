@@ -15,7 +15,7 @@ public class Day21_TechproLoginTest {
     //SuperSecretPassword
 
 
-    @Test
+    @Test(groups ="regression-tests")
     public void techproTest() {
 
         Driver.getDriver().get(ConfigReader.getProperty("techpro_test_url"));
