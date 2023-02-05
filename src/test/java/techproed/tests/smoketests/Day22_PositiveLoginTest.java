@@ -1,6 +1,7 @@
 package techproed.tests.smoketests;
 
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 import techproed.pages.BlueRentalHomePage;
 import techproed.pages.BlueRentalLoginPage;
@@ -21,14 +22,19 @@ public class Day22_PositiveLoginTest {
         //	•https://www.bluerentalcars.com/
         //	•Admin email: jack@gmail.com
         //	•Admin password: 12345
+        Reporter.log("Sayfaya git ");
         Driver.getDriver().get(ConfigReader.getProperty("app_url"));
         blueRentalHomePage = new BlueRentalHomePage();
         blueRentalLoginPage = new BlueRentalLoginPage();
+        Reporter.log("Login butonuna tıkla");
         blueRentalHomePage.loginLink.click();
+        Reporter.log("Giriş bilgilerini gir ");
         blueRentalLoginPage.emailBox.sendKeys(ConfigReader.getProperty("admin_email"));
         blueRentalLoginPage.passwordBox.sendKeys(ConfigReader.getProperty("admin_sifre"));
         blueRentalLoginPage.loginButton.click();
+        Reporter.log("Giris bilgilerini dogrula");
         Assert.assertTrue(blueRentalHomePage.userID.isDisplayed());
+        Reporter.log("Driveri kapat");
         Driver.closeDriver();
 
 
